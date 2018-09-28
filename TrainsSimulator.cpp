@@ -61,24 +61,11 @@ void TrainsSimulator::initialize(ifstream &fp)
     // Get number of ticks in simulation
     getline(fp, line);
     numTicks = stoi(line);
+    cerr << "Number of ticks to run: " << numTicks << endl;
 
     // // Get number of trains per line
     getline(fp, line);
-    int maxTrainPerLine = stoi(line);
-    maxTrains.insert(make_pair("g", maxTrainPerLine));
-    threads += maxTrainPerLine;
-    getline(fp, line);
-    maxTrainPerLine = stoi(line);
-    maxTrains.insert(make_pair("y", maxTrainPerLine));
-    threads += maxTrainPerLine;
-    getline(fp, line);
-    maxTrainPerLine = stoi(line);
-    maxTrains.insert(make_pair("b", maxTrainPerLine));
-    threads += maxTrainPerLine;
-    cerr 
-    << "G: " << maxTrains.find("g")->second << endl 
-    << "Y: " << maxTrains.find("y")->second << endl
-    << "B: " << maxTrains.find("b")->second << endl; 
+    addMaxTrains(line);
 }
 
 void TrainsSimulator::populateStationNames(string line)
@@ -93,7 +80,7 @@ void TrainsSimulator::populateStationNames(string line)
         line.erase(0, pos + g_comma.length());
         count++;
     }
-    token = line.substr(0, line.size()-1);
+    token = line.substr(0, line.size());
     addStation(token, count);
 }
 
@@ -121,7 +108,7 @@ void TrainsSimulator::getLinksForStation(int index, string line)
         line.erase(0, pos + g_space.length());
         dstIndex++;
     }
-    token = line.substr(0, line.size()-1);
+    token = line.substr(0, line.size());
     dist = stoi(token);
     addLink(outwardLinks, src, dstIndex, dist);
 }
@@ -150,7 +137,7 @@ void TrainsSimulator::getPopularities(string line)
         line.erase(0, pos + g_comma.length());
         index++;
     }
-    token = line.substr(0, line.size()-1);
+    token = line.substr(0, line.size());
     pop = stod(token);
     setPopularity(index, pop);
 }
@@ -176,7 +163,7 @@ void TrainsSimulator::getTrainLine(string line, string trainLineColor)
         line.erase(0, pos + g_comma.length());
         // For visual purpose - end
     }
-    token = line.substr(0, line.size()-1);
+    token = line.substr(0, line.size());
     addStationToLine(trainLine, token);
     g_trainLines.insert(make_pair(trainLineColor, trainLine));
     runningTrainsByLines.insert(make_pair(trainLineColor, new vector<Train*>()));
@@ -350,7 +337,7 @@ void TrainsSimulator::printAllTrainsIdleTicks(ostream &stream)
         Train* trainPtr = *trainItr;
         vector<int>* idleTicksPtr = trainPtr->getIdleTicks();
         stream << trainPtr->getName() << " idleCount = " << idleTicksPtr->size() << " ticks.";
-        if (idleTicksPtr->size() >= 0)
+        if (idleTicksPtr->size() > 0)
         {
             stream << " [ ";
             for (vector<int>::iterator idleTicksItr = idleTicksPtr->begin();
@@ -362,4 +349,36 @@ void TrainsSimulator::printAllTrainsIdleTicks(ostream &stream)
         }
         stream << "]\n";
     }
+}
+
+void TrainsSimulator::addMaxTrains(string line)
+{
+    int maxTrainPerLine;
+    string token;
+
+    int pos = line.find(g_comma); 
+    token = line.substr(0, pos);
+    maxTrainPerLine = stoi(token);
+    line.erase(0, pos + g_comma.length());
+    maxTrains.insert(make_pair("g", maxTrainPerLine));
+    threads += maxTrainPerLine;
+
+
+    pos = line.find(g_comma); 
+    token = line.substr(0, pos);
+    maxTrainPerLine = stoi(token);
+    line.erase(0, pos + g_comma.length());
+    maxTrains.insert(make_pair("y", maxTrainPerLine));
+    threads += maxTrainPerLine;
+    
+    
+    maxTrainPerLine = stoi(line);
+    maxTrains.insert(make_pair("b", maxTrainPerLine));
+    threads += maxTrainPerLine;
+
+
+    cerr
+    << "G: " << maxTrains.find("g")->second << endl 
+    << "Y: " << maxTrains.find("y")->second << endl
+    << "B: " << maxTrains.find("b")->second << endl; 
 }

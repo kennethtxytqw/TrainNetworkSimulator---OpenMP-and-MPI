@@ -56,5 +56,6 @@ namespace TrainsSimulation
             void addStationToLine(vector<TrainStation*>* trainLine, string station);
             void printTrainLine(vector<TrainStation*>* trainLine);
             void printTrainLinks();
+            void addMaxTrains(string line);
     };
 }
