@@ -30,6 +30,7 @@ namespace TrainsSimulation
             TrainStationLink* getTrainStationLink();
             string getPos();
             string getReadablePos();
+            vector<int>* getIdleTicks();
         private:
             string name;
             TrainStatus trainStatus;
@@ -41,5 +42,6 @@ namespace TrainsSimulation
             void changeDirection();
             TrainDirection direction;
             vector<TrainStation*>* trainLine;
+            vector<int> idleTicks;
     };
 }

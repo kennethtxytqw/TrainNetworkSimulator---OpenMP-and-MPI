@@ -120,5 +120,6 @@ int main(int argc, char** argv) {
     ts.initialize(infile);
     ts.execute();
     ts.printAvgWaitingTimes();
+    ts.printAllTrainsIdleTicks(cerr);
     return 0;
 }

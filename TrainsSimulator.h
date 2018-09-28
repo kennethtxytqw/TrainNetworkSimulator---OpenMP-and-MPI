@@ -35,6 +35,7 @@ namespace TrainsSimulation
             void initialize(ifstream &infile);
             virtual void addLink(map<TrainStation*, TrainStationLink*> &row, TrainStation* src, int dstIndex, int length);
             void printAvgWaitingTimes();
+            void printAllTrainsIdleTicks(ostream &stream);
         private:
             map<int, TrainStation*> g_stationIndexes;
             map<string, TrainStation*> g_stationNames;

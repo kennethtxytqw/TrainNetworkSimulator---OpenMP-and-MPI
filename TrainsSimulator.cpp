@@ -324,7 +324,6 @@ void TrainsSimulator::printAvgWaitingTimes()
             intervalsRecorded += static_cast<double>(recordedIntervalsPtr->size());
         }
 
-
         cerr 
         << trainLineColor 
         << ": " << runningTrainsByLines.find(trainLineColor)->second->size()
@@ -340,5 +339,22 @@ void TrainsSimulator::printAvgWaitingTimes()
         << totalWaitingTime / intervalsRecorded << ", "
         << totalLongestWaitingTime / trainLinePtr->size() << ", "
         << totalShortestWaitingTime / trainLinePtr->size() << endl;
+    }
+}
+void TrainsSimulator::printAllTrainsIdleTicks(ostream &stream)
+{
+    for (vector<Train*>::iterator trainItr = getRunningTrains()->begin();
+    trainItr != getRunningTrains()->end();
+    trainItr++)
+    {
+        Train* trainPtr = *trainItr;
+        stream << trainPtr->getName() + " idled at [ ";
+        for (vector<int>::iterator idleTicksItr = trainPtr->getIdleTicks()->begin();
+        idleTicksItr != trainPtr->getIdleTicks()->end();
+        idleTicksItr++)
+        {
+            stream << *idleTicksItr << ", ";
+        }
+        stream << "]\n";
     }
 }

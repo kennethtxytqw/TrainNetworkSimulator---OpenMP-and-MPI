@@ -38,11 +38,19 @@ void Train::tick(int ticks)
             {
                 load(ticks);
             }
+            else
+            {
+                idleTicks.push_back(ticks);
+            }
             break;
         case TrainStatus::WaitingToTravel:
             if (getTrainStationLink()->grantEntry())
             {
                 travel(ticks);
+            }
+            else
+            {
+                idleTicks.push_back(ticks);
             }
             break;
     }
