@@ -1,5 +1,6 @@
 #!/bin/bash
 g++ -o OmpTrainsSimulator TrainsSimulator.cpp TrainStation.cpp TrainStationLink.cpp OmpTrainsSimulator.cpp Train.cpp OmpTrainStation.cpp OmpTrainStationLink.cpp -fopenmp -std=c++11
+mkdir outputs logs
 # Run scenario 1. 1-64 threads. 3 times each
 
 ./OmpTrainsSimulator inputs/1-1.in 2>logs/1-1.error1 1>outputs/1-1.out1
