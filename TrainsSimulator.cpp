@@ -348,12 +348,17 @@ void TrainsSimulator::printAllTrainsIdleTicks(ostream &stream)
     trainItr++)
     {
         Train* trainPtr = *trainItr;
-        stream << trainPtr->getName() + " idled at [ ";
-        for (vector<int>::iterator idleTicksItr = trainPtr->getIdleTicks()->begin();
-        idleTicksItr != trainPtr->getIdleTicks()->end();
-        idleTicksItr++)
+        vector<int>* idleTicksPtr = trainPtr->getIdleTicks();
+        stream << trainPtr->getName() << " idleCount = " << idleTicksPtr->size() << " ticks.";
+        if (idleTicksPtr->size() >= 0)
         {
-            stream << *idleTicksItr << ", ";
+            stream << " [ ";
+            for (vector<int>::iterator idleTicksItr = ->begin();
+            idleTicksItr != trainPtr->getIdleTicks()->end();
+            idleTicksItr++)
+            {
+                stream << *idleTicksItr << ", ";
+            }
         }
         stream << "]\n";
     }
