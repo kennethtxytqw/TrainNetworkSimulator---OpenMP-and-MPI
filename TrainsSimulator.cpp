@@ -353,8 +353,8 @@ void TrainsSimulator::printAllTrainsIdleTicks(ostream &stream)
         if (idleTicksPtr->size() >= 0)
         {
             stream << " [ ";
-            for (vector<int>::iterator idleTicksItr = ->begin();
-            idleTicksItr != trainPtr->getIdleTicks()->end();
+            for (vector<int>::iterator idleTicksItr = idleTicksPtr->begin();
+            idleTicksItr != idleTicksPtr->end();
             idleTicksItr++)
             {
                 stream << *idleTicksItr << ", ";
