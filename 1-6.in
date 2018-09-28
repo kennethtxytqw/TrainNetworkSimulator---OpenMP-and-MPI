@@ -1,0 +1,22 @@
+14
+boon_lay,lakeside,jurong_east,buona_vista,commonwealth,raffles_place,city_hall,paya_lebar,pasir_ris,choa_chu_kang,bukit_batok,novena,orchard,marina_bay
+0 3 0 0 0 0 0 0 0 0 0 0 0 0
+3 0 3 0 0 0 0 0 0 0 0 0 0 0
+0 3 0 2 0 0 0 0 0 0 2 0 0 0
+0 0 2 0 2 0 0 0 0 0 0 0 0 0
+0 0 0 2 0 2 0 0 0 0 0 0 0 0
+0 0 0 0 2 0 2 0 0 0 0 0 0 6
+0 0 0 0 0 2 0 4 0 0 0 0 4 0
+0 0 0 0 0 0 4 0 5 0 0 0 0 0
+0 0 0 0 0 0 0 5 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 2 0 0 0
+0 0 2 0 0 0 0 0 0 2 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 4 0
+0 0 0 0 0 0 4 0 0 0 0 4 0 0
+0 0 0 0 0 6 0 0 0 0 0 0 0 0
+0.1,0.3,0.6,0.6,0.6,0.8,0.9,0.7,0.4,0.2,0.4,0.6,0.7,0.7
+boon_lay,lakeside,jurong_east,buona_vista,commonwealth,raffles_place,city_hall,paya_lebar,pasir_ris
+novena,orchard,city_hall,raffles_place,marina_bay
+choa_chu_kang,bukit_batok,jurong_east,buona_vista,commonwealth
+1000
+2,2,2
