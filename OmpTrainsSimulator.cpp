@@ -8,6 +8,7 @@
 #include <iterator>
 #include <iostream>
 #include <map>
+#include <chrono>
 
 using namespace std;
 using namespace TrainsSimulation;
@@ -118,8 +119,15 @@ int main(int argc, char** argv) {
     ifstream infile(argv[1]);
     OmpTrainsSimulator ts = OmpTrainsSimulator();
     ts.initialize(infile);
+
+    auto wcts = std::chrono::system_clock::now();
     ts.execute();
+    std::chrono::duration<double> wctduration = (std::chrono::system_clock::now() - wcts);
+
     ts.printAvgWaitingTimes();
+
+    cout << "Time elapsed for running of train network " << wctduration.count() << "seconds.\n";
+
     ts.printAllTrainsIdleTicks(cerr);
     return 0;
 }

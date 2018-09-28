@@ -177,3 +177,8 @@ void Train::changeDirection()
             break;
     }
 }
+
+vector<int>* Train::getIdleTicks()
+{
+    return &(this->idleTicks);
+}
