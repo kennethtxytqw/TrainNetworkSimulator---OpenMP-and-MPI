@@ -120,6 +120,7 @@ void TrainsSimulator::addLink(map<TrainStation*, TrainStationLink*> &row, TrainS
         TrainStation* dst = g_stationIndexes.find(dstIndex)->second;
         TrainStationLink* link = new TrainStationLink(src, dst, length);
         src->addOutLink(link);
+        getStationLinks()->push_back(link);
     }
 }
 
@@ -381,4 +382,8 @@ void TrainsSimulator::addMaxTrains(string line)
     << "G: " << maxTrains.find("g")->second << endl 
     << "Y: " << maxTrains.find("y")->second << endl
     << "B: " << maxTrains.find("b")->second << endl; 
+}
+
+vector<TrainStationLink*>* TrainsSimulator::getStationLinks() {
+    return &stationLinks;
 }

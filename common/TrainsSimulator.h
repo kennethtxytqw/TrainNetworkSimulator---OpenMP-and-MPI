@@ -31,6 +31,7 @@ namespace TrainsSimulation
             vector<Train*>* getRunningTrains();
             map<int, TrainStation*>* getStationIndexes();
             map<string, TrainStation*>* getStationNames();
+            vector<TrainStationLink*>* getStationLinks();
             virtual void addStation(string station, int index);
             void initialize(ifstream &infile);
             virtual void addLink(map<TrainStation*, TrainStationLink*> &row, TrainStation* src, int dstIndex, int length);
@@ -44,6 +45,7 @@ namespace TrainsSimulation
             map<string, int> maxTrains;
             map<string, vector<Train*>*> runningTrainsByLines;
             vector<Train*> runningTrains;
+            vector<TrainStationLink*> stationLinks;
             
             int threads;
             int numStations;
