@@ -107,6 +107,7 @@ void OmpTrainsSimulator::addLink(map<TrainStation*, TrainStationLink*> &row, Tra
         TrainStation* dst = getStationIndexes()->find(dstIndex)->second;
         TrainStationLink* link = new OmpTrainStationLink(src, dst, length);
         src->addOutLink(link);
+        getStationLinks()->push_back(link);
     }
 }
 

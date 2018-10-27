@@ -16,6 +16,7 @@ position(position),
 trainLine(trainLine),
 direction(dir)
 {
+    setNextLink();
 }
 
 Train::~Train()
@@ -104,21 +105,7 @@ void Train::travel(int ticks)
         trainStatus = TrainStatus::WaitingToLoad;
         
         // Set current position on trainLine
-        switch(direction)
-        {
-            case TrainDirection::North:
-                position++;
-                break;
-            case TrainDirection::South:
-                position--;
-                break;
-        }
-
-        // Change direction of train when reach either end of trainLine
-        if (position == 0 || position == trainLine->size() - 1)
-        {
-            changeDirection();
-        }
+        goNextStation();
     }
    
     cerr << "[Travel][" + getTrainStationLink()->getName() + "][" + getName() + "][" + to_string(counter) + "][active]\n";
@@ -142,15 +129,8 @@ void Train::load(int ticks)
         getTrainStation()->toggleStatus(ticks);
 
         // Set next TrainStationLink
-        switch(direction)
-        {
-            case TrainDirection::North:
-                trainStationLink = getTrainStation()->getOutLink(trainLine->at(position + 1));
-                break;
-            case TrainDirection::South:
-                trainStationLink = getTrainStation()->getOutLink(trainLine->at(position - 1));
-                break;
-        }
+        setNextLink();
+
     }
     cerr << "[Load][" + getTrainStation()->getName() + "][" + getName() + "][" + to_string(counter) + "][active]\n";
 }
@@ -181,4 +161,44 @@ void Train::changeDirection()
 vector<int>* Train::getIdleTicks()
 {
     return &(this->idleTicks);
+}
+
+void Train::goNextStation()
+{
+    switch(direction)
+    {
+        case TrainDirection::North:
+            position++;
+            break;
+        case TrainDirection::South:
+            position--;
+            break;
+    }
+
+    // Change direction of train when reach either end of trainLine
+    if (position == 0 || position == trainLine->size() - 1)
+    {
+        changeDirection();
+    }
+    
+}
+
+void Train::setNextLink() {
+    switch(direction)
+    {
+        case TrainDirection::North:
+            trainStationLink = getTrainStation()->getOutLink(trainLine->at(position + 1));
+            break;
+        case TrainDirection::South:
+            trainStationLink = getTrainStation()->getOutLink(trainLine->at(position - 1));
+            break;
+    }
+}
+
+void Train::setStatus(TrainStatus status) {
+    trainStatus = status;
+}
+
+TrainStatus Train::getStatus() {
+    return trainStatus;
 }

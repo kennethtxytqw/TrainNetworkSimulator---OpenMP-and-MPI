@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include "TrainStation.h"
 
@@ -11,9 +12,9 @@ namespace TrainsSimulation
             MpiTrainStation(string name, int index);
             ~MpiTrainStation();
             void tick();
-            void queueTrain(Train* train);
+            void queueTrain(Train* train, int tick);
             bool hasReadyTrain();
-            Train* getReadyTrain();
+            Train* getReadyTrain(int tick);
         private:
             vector<Train*> queuedTrains;
             int ticksLeftToLoad;

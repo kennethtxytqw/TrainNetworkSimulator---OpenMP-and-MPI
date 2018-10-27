@@ -32,6 +32,10 @@ namespace TrainsSimulation
             string getReadablePos();
             vector<int>* getIdleTicks();
             vector<TrainStation*>* getTrainLine();
+            void goNextStation();
+            void setNextLink();
+            void setStatus(TrainStatus status);
+            TrainStatus getStatus();
         private:
             string name;
             TrainStatus trainStatus;

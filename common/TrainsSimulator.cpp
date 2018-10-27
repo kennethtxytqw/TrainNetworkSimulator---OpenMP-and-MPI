@@ -27,7 +27,7 @@ void TrainsSimulator::initialize(ifstream &fp)
     // Get number of stations
     getline(fp, line);
     numStations = stoi(line);
-    cerr << "Number of stations: " << numStations << endl;
+    // cerr << "Number of stations: " << numStations << endl;
 
     // Get station names and assign them indexes
     getline(fp, line);
@@ -61,7 +61,7 @@ void TrainsSimulator::initialize(ifstream &fp)
     // Get number of ticks in simulation
     getline(fp, line);
     numTicks = stoi(line);
-    cerr << "Number of ticks to run: " << numTicks << endl;
+    // cerr << "Number of ticks to run: " << numTicks << endl;
 
     // // Get number of trains per line
     getline(fp, line);
@@ -89,7 +89,7 @@ void TrainsSimulator::addStation(string station, int index)
     TrainStation* trainStation = new TrainStation(station, index);
     g_stationNames.insert(make_pair(station, trainStation));
     g_stationIndexes.insert(make_pair(index, trainStation));
-    cerr << trainStation->getName() << "-" << index << endl;
+    // cerr << trainStation->getName() << "-" << index << endl;
 }
 
 void TrainsSimulator::getLinksForStation(int index, string line)
@@ -174,17 +174,17 @@ void TrainsSimulator::getTrainLine(string line, string trainLineColor)
 void TrainsSimulator::printTrainLine(vector<TrainStation*>* vecPtr)
 {
     vector<TrainStation*>::iterator listItr;
-    cerr << "The stations are:" << endl;
+    // cerr << "The stations are:" << endl;
     for (listItr = vecPtr->begin();
         listItr != vecPtr->end();
         listItr++)
         {
             TrainStation* stationPtr = *listItr;
 
-            cerr << stationPtr->getName() << " ";
+            // cerr << stationPtr->getName() << " ";
 
         }
-        cerr << endl;
+        // cerr << endl;
 }
 
 void TrainsSimulator::printTrainLinks()
@@ -198,7 +198,7 @@ void TrainsSimulator::printTrainLinks()
         iter != outLinks->end();
         iter++)
         {
-            cerr << (iter->second)->getName() << endl;
+            // cerr << (iter->second)->getName() << endl;
         }
     }
 }
@@ -212,7 +212,7 @@ void TrainsSimulator::addStationToLine(vector<TrainStation*>* trainLinePtr, stri
         trainLinePtr->push_back(iter->second);
     } else
     {
-        cerr << "Can't find index of " << station << endl;
+        // cerr << "Can't find index of " << station << endl;
     }
 }
 
@@ -312,13 +312,13 @@ void TrainsSimulator::printAvgWaitingTimes()
             intervalsRecorded += static_cast<double>(recordedIntervalsPtr->size());
         }
 
-        cerr 
-        << trainLineColor 
-        << ": " << runningTrainsByLines.find(trainLineColor)->second->size()
-        << " trains -> "
-        << totalWaitingTime << "/" << intervalsRecorded << ", "
-        << totalLongestWaitingTime << "/" << trainLinePtr->size() << ", "
-        << totalShortestWaitingTime << "/" << trainLinePtr->size() << endl;
+        // cerr 
+        // << trainLineColor 
+        // << ": " << runningTrainsByLines.find(trainLineColor)->second->size()
+        // << " trains -> "
+        // << totalWaitingTime << "/" << intervalsRecorded << ", "
+        // << totalLongestWaitingTime << "/" << trainLinePtr->size() << ", "
+        // << totalShortestWaitingTime << "/" << trainLinePtr->size() << endl;
 
         cout 
         << trainLineColor 
@@ -378,10 +378,10 @@ void TrainsSimulator::addMaxTrains(string line)
     threads += maxTrainPerLine;
 
 
-    cerr
-    << "G: " << maxTrains.find("g")->second << endl 
-    << "Y: " << maxTrains.find("y")->second << endl
-    << "B: " << maxTrains.find("b")->second << endl; 
+    // cerr
+    // << "G: " << maxTrains.find("g")->second << endl 
+    // << "Y: " << maxTrains.find("y")->second << endl
+    // << "B: " << maxTrains.find("b")->second << endl; 
 }
 
 vector<TrainStationLink*>* TrainsSimulator::getStationLinks() {

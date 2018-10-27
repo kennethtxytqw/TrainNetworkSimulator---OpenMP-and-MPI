@@ -21,7 +21,7 @@ namespace TrainsSimulation
             ~TrainsSimulator(void);
             void execute(void);
             vector<Train*>* getAllTrains(void);
-            void printAllTrainsPos(void);
+            virtual void printAllTrainsPos(void);
             void printReadableAllTrainsPos(ostream &stream);
             int getThreads(void);
             int getNumTicks();
